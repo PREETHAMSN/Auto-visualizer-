@@ -95,6 +95,18 @@ def index():
    # graph_json = fig.to_json()
 
     return render_template('index.html', info_count=info_count, warn_error_logs=warn_error_logs)# Start log streaming in the background
+
+# Visualization 1 route
+@app.route('/General_visualizations')
+def General_visualizations():
+    return render_template('General_visualizations.html')
+
+# Visualization 2 route
+@app.route('/ddos_visualizations')
+def ddos_visualizations():
+    return render_template('ddos_visualizations.html')
+
+
 @socketio.on('connect')
 def handle_connect():
     socketio.start_background_task(stream_logs)
