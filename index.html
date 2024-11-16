@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log Viewer</title>
     <style>
-        /* Global Styles */
-        body {
+        /* Your existing styles */
+        /* ... */
+          /* Global Styles */
+          body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
@@ -123,6 +125,16 @@
 </head>
 <body>
     <div class="container">
+        <!-- Dropdown to choose visualization type -->
+        <div class="dropdown" style="text-align:center; margin-bottom: 20px;">
+            <label for="visualization-select">Choose Visualization:</label>
+            <select id="visualization-select">
+                <option value="none">Select</option>
+                <option value="general_visualization">General Visualizations</option>
+                <option value="ddos_visualization">DDoS Visualizations</option>
+            </select>
+        </div>
+
         <!-- INFO Log Count Section -->
         <div class="info-section">
             <h2>INFO Log Count</h2>
@@ -154,5 +166,20 @@
             </table>
         </div>
     </div>
+
+    <!-- JavaScript to handle dropdown and dynamic script loading -->
+<script>
+     // JavaScript to handle dropdown and dynamic navigation
+     document.getElementById('visualization-select').addEventListener('change', function() {
+            var selectedOption = this.value;
+
+            if (selectedOption === 'general_visualization') {
+                window.location.href = '/General_visualizations';  // Redirect to visualization 1 page
+            } else if (selectedOption === 'ddos_visualization') {
+                window.location.href = '/ddos_visualizations';  // Redirect to visualization 2 page
+            }
+        });
+</script>
+
 </body>
 </html>
