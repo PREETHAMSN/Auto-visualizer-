@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Viewer</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+        
+        h1, h2 {
+            color: #3e4c59;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        /* Layout */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+        
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        td {
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        td:hover {
+            background-color: #e2f1e1;
+        }
+        
+        /* Header Section */
+        .info-section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-left: 6px solid #4CAF50;
+        }
+
+        .info-section h2 {
+            color: #4CAF50;
+            margin: 0;
+        }
+
+        .info-count {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        /* Card-like Design for Sections */
+        .log-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .log-section h2 {
+            color: #3e4c59;
+            margin-bottom: 15px;
+        }
+
+        .log-section table {
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            th, td {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            th, td {
+                font-size: 11px;
+                padding: 8px;
+            }
+
+            .info-count {
+                font-size: 1.5rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- INFO Log Count Section -->
+        <div class="info-section">
+            <h2>INFO Log Count</h2>
+            <div class="info-count">{{ info_count }}</div>
+        </div>
+        
+        <!-- WARN and ERROR Logs Section -->
+        <div class="log-section">
+            <h2>WARN and ERROR Logs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>LogLevel</th>
+                        <th>Component</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in warn_error_logs %}
+                        <tr>
+                            <td>{{ row['Timestamp'] }}</td>
+                            <td>{{ row['LogLevel'] }}</td>
+                            <td>{{ row['Component'] }}</td>
+                            <td>{{ row['Message'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
